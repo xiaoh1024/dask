@@ -901,15 +901,6 @@ class NestedContainer(Task, Iterable):
             )
         )
 
-    def __dask_tokenize__(self) -> tuple[str, type, list[str]]:
-        from dask.tokenize import tokenize
-
-        return (
-            type(self).__name__,
-            self.klass,
-            [tokenize(a) for a in self.args],
-        )
-
     @staticmethod
     def to_container(*args, constructor):
         return constructor(args)
